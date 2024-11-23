@@ -1,5 +1,3 @@
-//programa principal
-
 #include "DibujosCarta.h"
 #include "mostrarInterpretacion.h"
 #include <locale.h>
@@ -96,23 +94,21 @@ void registrarTirada(){
 	abrirArchivoAgregar(&archRegistroTirada);
 	
 	tDatosJugador datosJugdor = pedirDatosJug();
-	tCartasResultantes cartasResltantes = barajarYTirar();//devulve un struct compuesto de 3 string, a la vez muestra la animacion
+	tCartasResultantes cartasResltantes = barajarYTirar();
 
 	tDatosTirada datosTirada;
-	datosTirada.datosJugador = datosJugdor;//asignacion del struct, se rellena con los datos del jugador y las cartas que le salieron
-	datosTirada.cartasResultantes = cartasResltantes;//asignacion del struct
+	datosTirada.datosJugador = datosJugdor;
+	datosTirada.cartasResultantes = cartasResltantes;
 	
-	guardarRegEnArch(&archRegistroTirada, datosTirada);//guarda el registro en el archivo
+	guardarRegEnArch(&archRegistroTirada, datosTirada);
 	
-	int codTirada = concatenarCartas(cartasResltantes);//a partir de 3 int llega a un numero de tres cifras, que encuadra con el archivo de significados
+	int codTirada = concatenarCartas(cartasResltantes);
 	setColor(4);
 	mostrarInterpretacion(codTirada);
 	setColor(7);
 	cerrarArch(&archRegistroTirada);
 	
 }
-
-//implementacion de funciones para la cola dinamica
 
 void inicializarCola(){
 	colaReg.final = NULL;
@@ -149,12 +145,12 @@ void mostrarRegistros(){
 			setColor(4);
 			printf("\n\t\tNombre del jugador: %s\n\t\tEdad %d a%cos\n", colaAux->datosTirada.datosJugador.nombreYAp, colaAux->datosTirada.datosJugador.edad, 164);
 			printf("Resultado obtenido:\n");
-			//muestra las cartas obtenidas
+			
 			setColor(2);
-			dibujarCarta(colaAux->datosTirada.cartasResultantes.carta1, 1, 1); //flag = 1, primerta muestra
-			dibujarCarta(colaAux->datosTirada.cartasResultantes.carta2, 2, 2); //flag = 1, segunda muestra
-			dibujarCarta(colaAux->datosTirada.cartasResultantes.carta3, 3, 3); //flag = 1, tercera muestra
-			//muestra la interpretacion
+			dibujarCarta(colaAux->datosTirada.cartasResultantes.carta1, 1, 1); 
+			dibujarCarta(colaAux->datosTirada.cartasResultantes.carta2, 2, 2); 
+			dibujarCarta(colaAux->datosTirada.cartasResultantes.carta3, 3, 3); 
+			
 			setColor(5);
 			int codTirada = concatenarCartas(colaAux->datosTirada.cartasResultantes);
 			mostrarInterpretacion(codTirada);

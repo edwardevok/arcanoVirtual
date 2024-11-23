@@ -1,5 +1,3 @@
-//TDA para definin la interpretacion de la salida de cartas
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -13,15 +11,15 @@ typedef struct {
 	tString lectura;
 }tInterpretacion;
 
-tInterpretacion interpretaciones[MAX]; //vector
+tInterpretacion interpretaciones[MAX]; 
 
-void completarVector();//interno de tda
+void completarVector();
 int buscarEnVector(int);
-void mostrarInterpretacion(int);//para usuario
+void mostrarInterpretacion(int);
 
 FILE* archInterpretacion;
 
-//implementacion
+
 void completarVector(){
 	archInterpretacion = fopen("interpretaciones2.txt", "r");	
 
@@ -41,7 +39,7 @@ void completarVector(){
 
 
 int buscarEnVector(int elem){
-	//implementacion de busqueda binaria
+
 	int result = -1, posMedia;
 	int extInf = 0;
 	int extSup = MAX;

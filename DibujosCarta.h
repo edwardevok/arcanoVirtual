@@ -1,22 +1,3 @@
-/* Indicaciones para el manejo del TAD
-funciones a usar:
-	dibujarCarta() dibuja una sola carta pasada por parametro, y la ubicacion que se pide.
-	sus parametros son :(por orden de izq a der) 
-			carta a dibujar, 
-			posicion (0,1,2) desplazamiento sobre eje x,
-	 		flag :  1 para primer uso, 2 para siguientes uso(usos de seguido)
-	 		
-	barajarYTirar(): se usa para mezclar las cartas y devuelve efecto visual y una variable de tipo tCartasResultantes, con las 3 cartas que salieron
-	
-	mostrarTresCartas(tCartasResultantes): sirve para mostrar las 3 cartas que se pasen por parametro en forma de variable de tipo tCartasResultantes
-		util para al tomar el archivo de registros de lecturas usarlo para imprimir las cartas
-		
-		
-TENER EN CUENTA:
-	este TAD incluye un nuevo tipo de variable, tCartasResultantes, por lo que NO se debe ni tiene que crear con typedef , el TAD lo incluye, usenlo como cualquier tipo
-	
-	chau me voy a dormir la siesta*/ 
-	
 #include <stdio.h>
 #include <windows.h>
 #include <time.h>
@@ -29,26 +10,22 @@ typedef struct{
 }tCartasResultantes;
 
 
-//delaracion / parte publica
-
 void dibujarCarta(int, int, int);
 tCartasResultantes barajarYTirar();
 void gotoxy(int, int);
 void setColor(int color);
 COORD obtenerPosicionCursor();
-void mostrarTresCartas(tCartasResultantes); //esta funcion se va a usar para mostrar las cartas pasando por parametro, util para visualizar en el registro de lecturas
+void mostrarTresCartas(tCartasResultantes); 
 
-//implementacion / parte privada
 
-void dibujarCarta(int pCarta, int pOrden, int flag){ //colocar valor 1 en la primer iteracion
+void dibujarCarta(int pCarta, int pOrden, int flag){ 
 	COORD coorActual = obtenerPosicionCursor();
 	int y;
 	if (flag == 1){
-		y = coorActual.Y +1;  // para que la impresion parta un renglon abajo de donde estaba el cursor	y no interfiera con lo que esta ya escrito
-		//para ayudar a que al mostrar el registro de lecturas de tarot se pueda mostrar las cartas de cada participante registrado
+		y = coorActual.Y +1;  
 	}
 	else{
-		y = coorActual.Y -6;//imprime 6 niveles debajo, que 6 es el alto de la carta, asi la imprime de forma contigua
+		y = coorActual.Y -6;
 	}
 	int x = 20 * pOrden;
 	gotoxy (x,y);
@@ -176,39 +153,39 @@ tCartasResultantes barajarYTirar(){
 	long int sleep = 70000;
 	//carta 1
 	for (i=0; i < 15; i++){
-		carta = (rand() % 5) + 1;//carta aleatoria/  va +1 para que sea numero del 1 al 10
+		carta = (rand() % 5) + 1;
 		if (i == 0){	
 			setColor((rand() % 14) + 1);
-			dibujarCarta(carta, 0, 1);//se ejecuta por primera vez/ rand da un valor desde 0 a 9 en este caso
+			dibujarCarta(carta, 0, 1);
 		}
 		else{
-			setColor((rand() % 15) + 1);//color aleatorio del 1 al 15
-			dibujarCarta(carta, 0, 2);//ya es una segunda ejecucion
+			setColor((rand() % 15) + 1);
+			dibujarCarta(carta, 0, 2);
 		}
 		cartas.carta1 = carta;
 		usleep (sleep);
 	}
 	//carta 2
 	for (i=0; i < 15; i++){
-		carta = (rand() % 5) + 1;//carta aleatoria
+		carta = (rand() % 5) + 1;
 		if(carta != cartas.carta1){
-			setColor((rand() % 15) + 1);//color aleatorio del 1 al 15
-			dibujarCarta(carta, 1, 2);//se ejecura por segunda vez, va 2 / tambien se actualiza posicion
+			setColor((rand() % 15) + 1);
+			dibujarCarta(carta, 1, 2);
 			usleep (sleep);
 			cartas.carta2 = carta;
 		}
 	}
 	//carta 3
 	for (i=0; i < 15; i++){
-		setColor((rand() % 15) + 1);//color aleatorio del 1 al 15
-		carta = (rand() % 5) + 1;//carta aleatoria
+		setColor((rand() % 15) + 1);
+		carta = (rand() % 5) + 1;
 		if(carta != cartas.carta1  && carta != cartas.carta2){
-			dibujarCarta(carta, 2, 2);//se ejecura por tercera vez, va 2/ tambien se actualiza posicion 
+			dibujarCarta(carta, 2, 2); 
 			cartas.carta3 = carta;
 		}
 		usleep (sleep);
 	}
-	setColor(7);//vuelve a blanco
+	setColor(7);
 	return cartas;
 }
 
