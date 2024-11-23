@@ -86,61 +86,7 @@ void dibujarCarta(int pCarta, int pOrden, int flag){
     		printf("|        |\n");			
 			break;
 		}
-		case 6:{
-			gotoxy(x,y+1);
-  			printf("|   LOS  |\n");
-			gotoxy(x,y+2);
-    		printf("|ENAMORA-|\n");
-			gotoxy(x,y+3);
-    		printf("|  DOS   |\n");
-			gotoxy(x,y+4);
-    		printf("|        |\n");	
-			break;
-		}
-		case 7:{
-			gotoxy(x,y+1);
-  			printf("|        |\n");
-			gotoxy(x,y+2);
-    		printf("|   LA   |\n");
-			gotoxy(x,y+3);
-    		printf("| FUERZA |\n");
-			gotoxy(x,y+4);
-    		printf("|        |\n");	
-			break;
-		}
-		case 8:{
-			gotoxy(x,y+1);
-			printf("|        |\n");
-			gotoxy(x,y+2);
-    		printf("|   EL   |\n");
-			gotoxy(x,y+3);
-    		printf("|  CARRO |\n");
-			gotoxy(x,y+4);
-    		printf("|        |\n");	
-			break;
-		}
-		case 9:{
-			gotoxy(x,y+1);
-  			printf("|   EL   |\n");
-			gotoxy(x,y+2);
-    		printf("| ERMITA-|\n");
-			gotoxy(x,y+3);
-    		printf("|   NIO  |\n");
-			gotoxy(x,y+4);
-    		printf("|        |\n");	
-			break;
-		}
-		case 10:{
-			gotoxy(x,y+1);
-  			printf("|   LA   |\n");
-			gotoxy(x,y+2);
-    		printf("|  RUEDA |\n");
-			gotoxy(x,y+3);
-    		printf("|  DE LA |\n");
-			gotoxy(x,y+4);
-    		printf("| FORTUNA|\n");
-			break;
-		}
+		
 	}
 	gotoxy(x,y+5);
 	printf("----------\n");
